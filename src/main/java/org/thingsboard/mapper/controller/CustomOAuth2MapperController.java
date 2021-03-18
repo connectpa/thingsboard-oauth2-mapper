@@ -46,17 +46,17 @@ public class CustomOAuth2MapperController {
         String email = externalUserInJson.get("email").asText();
         result.setEmail(email);
 
-        String firstName = externalUserInJson.get("givenName").asText();
+        String firstName = externalUserInJson.get("firstname").asText();
         result.setFirstName(firstName);
 
-        String lastName = externalUserInJson.get("familyName").asText();
+        String lastName = externalUserInJson.get("surname").asText();
         result.setLastName(lastName);
 
         String role = "";
-        JsonNode jsonRole = externalUserInJson.get("attributes").get("role");
+        JsonNode jsonRole = externalUserInJson.get("attributes").get("roles");
         if (jsonRole != null) role = jsonRole.asText();
 
-        if (role.toLowerCase().equals("tenant")) {
+        if (role.toLowerCase().equals("Tenant")) {
             // Any attribute from the external user info object can be used as tenant name
             result.setTenantName(firstName + " " + lastName);
         } else {
